@@ -57,9 +57,9 @@ public class LuaParser {
         globals.load(new StringLib());
         globals.load(new CoroutineLib());
         globals.load(new JseMathLib());
-        //globals.load(new JseIoLib());
+        globals.load(new JseIoLib());
         globals.load(new JseOsLib());
-        //globals.load(new LuajavaLib());
+        globals.load(new LuajavaLib());
         globals.load(new LuaDiscordLib(SelfBoat.jda));
 
         globals.set("require", LuaValue.NIL);
@@ -92,7 +92,7 @@ public class LuaParser {
             public Varargs invoke(Varargs args) {
                 String newLine = "";
 
-                //System.out.println(args);
+                System.out.println(args);
 
                 for (int i = 1; i < args.narg() + 1; i++) {
                     newLine = newLine + " " + LuaUtil.tostring(args.arg(i));
@@ -108,7 +108,7 @@ public class LuaParser {
                 return LuaValue.NIL;
             }
 
-            /*@Override
+            @Override
             public Varargs invoke(Varargs args) {
                 String newLine = "";
 
@@ -126,7 +126,7 @@ public class LuaParser {
                 globals.set("msgout", LuaString.valueOf(globals.get("msgout") + newLine));
 
                 return LuaValue.NIL;
-            }*/
+            }
         });
 
         LuaValue osLib = globals.get("os");
@@ -160,13 +160,13 @@ public class LuaParser {
         Future<Outcome> future = executor.submit(new LuaTask(source, args));
 
         try {
-            //System.out.println("Started..");
+            System.out.println("Started..");
             return future.get(timeout, TimeUnit.MILLISECONDS);
 
-            //System.out.println("Finished!");
+            System.out.println("Finished!");
         } catch (TimeoutException e) {
             future.cancel(true);
-            //System.out.println("Terminated!");
+            System.out.println("Terminated!");
         }
 
         executor.shutdownNow();
