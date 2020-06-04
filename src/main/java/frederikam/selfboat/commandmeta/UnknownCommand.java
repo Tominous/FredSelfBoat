@@ -19,8 +19,8 @@ public class UnknownCommand implements ICommand {
 
     @Override
     public void onInvoke(Guild guild, TextChannel channel, User invoker, Message message, String[] args) {
-        //channel.sendMessage("<@"+invoker.getId()+"> unknown command \""+message.getContent()+"\"!");
-        //channel.sendMessage(TextUtils.prefaceWithMention(invoker, " unknown command \""+message.getContent()+"\"!"));
+        channel.sendMessage("<@"+invoker.getId()+"> unknown command \""+message.getContent()+"\"!");
+        channel.sendMessage(TextUtils.prefaceWithMention(invoker, " unknown command \""+message.getContent()+"\"!"));
     }
     
 }
