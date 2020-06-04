@@ -54,12 +54,12 @@ public class ChannelListener extends ListenerAdapter {
 
     @Override
     public void onMessageDelete(MessageDeleteEvent event) {
-        /*if (messagesToDeleteIfIdDeleted.containsKey(event.getMessageId())) {
+        if (messagesToDeleteIfIdDeleted.containsKey(event.getMessageId())) {
             messagesToDeleteIfIdDeleted.get(event.getMessageId()).deleteMessage();
-        }*/
+        }
     }
 
-    /*@Override
+    @Override
     public void onPrivateMessageReceived(PrivateMessageReceivedEvent event) {
         //Ignore self
         if (event.getAuthor().getUsername().equals(event.getJDA().getSelfInfo().getUsername())) {
@@ -80,14 +80,14 @@ public class ChannelListener extends ListenerAdapter {
         lastUserToReceiveHelp = event.getAuthor();
     }*/
 
-    /*@Override
+    @Override
     public void onInviteReceived(InviteReceivedEvent event) {
         if (event.getMessage().isPrivate()) {
             event.getAuthor().getPrivateChannel().sendMessage("Sorry! Since the release of the official API, registered bots must now be invited by someone with Manage **Server permissions**. If you have permissions, you can invite me at:\n"
                     + "https://discordapp.com/oauth2/authorize?&client_id=" + SelfBoat.CLIENT_ID + "&scope=bot");
-            /*
-            //System.out.println(event.getInvite().getUrl());
-            //InviteUtil.join(event.getInvite(), FredBoat.jda);
+            
+            System.out.println(event.getInvite().getUrl());
+            InviteUtil.join(event.getInvite(), FredBoat.jda);
             Guild guild = null;
             try {
                 guild = FredBoat.jda.getGuildById(event.getInvite().getGuildId());
@@ -104,9 +104,9 @@ public class ChannelListener extends ListenerAdapter {
             } else {
                 event.getAuthor().getPrivateChannel().sendMessage("Already in that channel!");
             }
-             *//*
+             
         }
-    }*/
+    }
 
     public HashMap<String, ArrayList<Integer>> recentTableFlips = new HashMap<>();
 
@@ -122,19 +122,19 @@ public class ChannelListener extends ListenerAdapter {
     }
 
     public void tableflip(MessageReceivedEvent event) {
-        //System.out.println(event.getGuild().getName() + " \t " + event.getAuthor().getUsername() + " \t " + event.getMessage().getRawContent());
-        //event.getChannel().sendMessage("┬─┬﻿ ノ( ゜-゜ノ)");
+        System.out.println(event.getGuild().getName() + " \t " + event.getAuthor().getUsername() + " \t " + event.getMessage().getRawContent());
+        event.getChannel().sendMessage("┬─┬﻿ ノ( ゜-゜ノ)");
     }
 
     @Override
     public void onReady(ReadyEvent event) {
         SelfBoat.init();
-        //jda.getAccountManager().setGame("Say ;;help");
+        jda.getAccountManager().setGame("Say ;;help");
     }
 
     @Override
     public void onReconnect(ReconnectedEvent event) {
-        //jda.getAccountManager().setGame("Say ;;help");
+        jda.getAccountManager().setGame("Say ;;help");
     }
 
     public static Runnable onUnrequestedConnection = new Runnable() {
