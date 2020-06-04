@@ -35,16 +35,16 @@ import org.json.JSONObject;
 
 public class SelfBoat {
 
-    //public static final boolean IS_BETA = "Windows 10".equals(System.getProperty("os.name"));
+    public static final boolean IS_BETA = "Windows 10".equals(System.getProperty("os.name"));
     public static volatile JDA jda;
     public static JCA jca;
     public static final String PREFIX = "<<";
     public static final String OWNER_ID = "81011298891993088";
     public static final long START_TIME = System.currentTimeMillis();
-    //public static final String ACCOUNT_EMAIL_KEY = IS_BETA ? "emailBeta" : "emailProduction";
-    //public static final String ACCOUNT_PASSWORD_KEY = IS_BETA ? "passwordBeta" : "passwordProduction";
-    //public static String accountEmail = IS_BETA ? "frederikmikkelsen2@outlook.com" : "frederikmikkelsen@outlook.com";
-    //private static String accountPassword;
+    public static final String ACCOUNT_EMAIL_KEY = IS_BETA ? "emailBeta" : "emailProduction";
+    public static final String ACCOUNT_PASSWORD_KEY = IS_BETA ? "passwordBeta" : "passwordProduction";
+    public static String accountEmail = IS_BETA ? "frederikmikkelsen2@outlook.com" : "frederikmikkelsen@outlook.com";
+    private static String accountPassword;
     public static String mashapeKey;
     public static String myUserId = "";
     public static volatile User myUser;
@@ -57,7 +57,7 @@ public class SelfBoat {
         
         String accountEmail = credsjson.getString("email");
         String accountPassword = credsjson.getString("password");
-        //accountToken = credsjson.getString(ACCOUNT_TOKEN_KEY);
+        accountToken = credsjson.getString(ACCOUNT_TOKEN_KEY);
         mashapeKey = credsjson.getString("mashapeKey");
         String cbUser = credsjson.getString("cbUser");
         String cbKey = credsjson.getString("cbKey");
@@ -80,9 +80,9 @@ public class SelfBoat {
     }
 
     static void init() {
-        //if (IS_BETA) {
-        //    helpMsg = helpMsg + "\n\n**This is the beta version of Fredboat. Are you sure you are not looking for the non-beta version \"FredBoat\"?**";
-        //}
+        if (IS_BETA) {
+            helpMsg = helpMsg + "\n\n**This is the beta version of Fredboat. Are you sure you are not looking for the non-beta version \"FredBoat\"?**";
+        }
 
         for (Guild guild : jda.getGuilds()) {
             System.out.println(guild.getName());
@@ -96,7 +96,7 @@ public class SelfBoat {
         myUser = jda.getUserById(myUserId);
 
         //Commands
-        //CommandManager.registerCommand("help", new HelpCommand());
+        CommandManager.registerCommand("help", new HelpCommand());
         CommandManager.registerCommand("dbget", new DBGetCommand());
         CommandManager.registerCommand("say", new SayCommand());
         CommandManager.registerCommand("uptime", new UptimeCommand());
