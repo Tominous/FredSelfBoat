@@ -47,9 +47,9 @@ public class LuaCommandOLD implements ICommand {
         globals.load(new StringLib());
         globals.load(new CoroutineLib());
         globals.load(new JseMathLib());
-        //globals.load(new JseIoLib());
+        globals.load(new JseIoLib());
         globals.load(new JseOsLib());
-        //globals.load(new LuajavaLib());
+        globals.load(new LuajavaLib());
         globals.load(new LuaDiscordLib(SelfBoat.jda));
 
         globals.set("require", LuaValue.NIL);
@@ -96,7 +96,7 @@ public class LuaCommandOLD implements ICommand {
                 return LuaValue.NIL;
             }
 
-            /*@Override
+            @Override
             public Varargs invoke(Varargs args) {
                 String newLine = "";
 
@@ -114,7 +114,7 @@ public class LuaCommandOLD implements ICommand {
                 globals.set("msgout", LuaString.valueOf(globals.get("msgout") + newLine));
 
                 return LuaValue.NIL;
-            }*/
+            }
         });
 
         LuaValue osLib = globals.get("os");
